@@ -3,6 +3,8 @@
 > A full-stack retro arcade-style AI DJ mixer — mix tracks, analyse harmonic compatibility via the Camelot wheel, optimise your set sequence, apply FX, and export your mix.
 
 
+<img width="954" height="403" alt="Screenshot 2026-06-21 050817" src="https://github.com/user-attachments/assets/d99a29c9-5f90-4328-9c5b-9bc7ca519fc4" />
+<img width="942" height="392" alt="Screenshot 2026-06-21 050749" src="https://github.com/user-attachments/assets/0f80cd15-0a66-415f-9a9f-6e84a2a5c74f" />
 
 ---
 
