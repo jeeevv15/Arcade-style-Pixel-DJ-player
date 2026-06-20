@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+:root {
+  --purple-deep:  #2d0a6e;
+  --purple:       #5a1090;
+  --magenta:      #c0328a;
+  --orange:       #f07540;
+  --peach:        #f8c060;
+  --cream:        #fdf0c0;
+  --cloud:        #d8eaf8;
+  --panel-bg:     rgba(30, 5, 60, 0.82);
+  --panel-border: rgba(200, 80, 200, 0.6);
+  --panel-glow:   rgba(180, 50, 180, 0.3);
+  --text-bright:  #ffe8ff;
+  --text-mid:     #d0a0e0;
+  --text-dim:     #7050a0;
+  --accent-pink:  #ff6ed8;
+  --accent-orange:#ffaa44;
+  --accent-purple:#c060ff;
+  --accent-yellow:#ffe060;
+  --accent-green: #60ffaa;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+* { box-sizing: border-box; image-rendering: pixelated; }
+
+html, body {
+  background: #2d0a6e;
+  color: var(--text-bright);
+  font-family: 'Share Tech Mono', monospace;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--magenta) var(--purple-deep);
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--purple-deep); }
+::-webkit-scrollbar-thumb { background: var(--magenta); }
+
+/* ── Pixel Panel (warm purple glass) ──────────────────────── */
+.pixel-panel {
+  background: var(--panel-bg);
+  border: 2px solid var(--panel-border);
+  backdrop-filter: blur(8px);
+  position: relative;
+}
+
+.pixel-panel::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid rgba(255,110,216,0.15);
+  pointer-events: none;
+}
+
+/* ── Neon borders — warm palette ──────────────────────────── */
+.border-pink   { border-color: var(--accent-pink);   box-shadow: 0 0 8px var(--accent-pink),   inset 0 0 6px rgba(255,110,216,0.06); }
+.border-orange { border-color: var(--accent-orange); box-shadow: 0 0 8px var(--accent-orange), inset 0 0 6px rgba(255,170,68,0.06); }
+.border-purple { border-color: var(--accent-purple); box-shadow: 0 0 8px var(--accent-purple), inset 0 0 6px rgba(192,96,255,0.06); }
+.border-yellow { border-color: var(--accent-yellow); box-shadow: 0 0 8px var(--accent-yellow), inset 0 0 6px rgba(255,224,96,0.06); }
+.border-green  { border-color: var(--accent-green);  box-shadow: 0 0 8px var(--accent-green),  inset 0 0 6px rgba(96,255,170,0.06); }
+
+/* ── Glow text ─────────────────────────────────────────────── */
+.glow-pink   { color: var(--accent-pink);   text-shadow: 0 0 8px var(--accent-pink),   0 0 20px var(--accent-pink); }
+.glow-orange { color: var(--accent-orange); text-shadow: 0 0 8px var(--accent-orange), 0 0 20px var(--accent-orange); }
+.glow-purple { color: var(--accent-purple); text-shadow: 0 0 8px var(--accent-purple), 0 0 20px var(--accent-purple); }
+.glow-yellow { color: var(--accent-yellow); text-shadow: 0 0 8px var(--accent-yellow), 0 0 20px var(--accent-yellow); }
+.glow-green  { color: var(--accent-green);  text-shadow: 0 0 8px var(--accent-green),  0 0 20px var(--accent-green); }
+.glow-white  { color: #fff; text-shadow: 0 0 8px #fff, 0 0 20px rgba(255,200,255,0.6); }
+
+/* ── Arcade Button ─────────────────────────────────────────── */
+.arcade-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  border: 2px solid currentColor;
+  padding: 7px 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.1s;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+.arcade-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+.arcade-btn:hover::after  { opacity: 0.12; }
+.arcade-btn:active::after { opacity: 0.25; }
+.arcade-btn:active        { transform: translateY(1px); }
+.arcade-btn:disabled      { opacity: 0.3; cursor: not-allowed; }
+
+/* ── Track card ────────────────────────────────────────────── */
+.track-card {
+  background: rgba(30, 5, 60, 0.75);
+  border: 1px solid rgba(180, 80, 180, 0.3);
+  transition: all 0.15s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+}
+.track-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--track-color, var(--accent-pink));
+}
+.track-card:hover {
+  border-color: var(--track-color, var(--accent-pink));
+  background: rgba(50, 10, 80, 0.88);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35),
+              0 0 12px color-mix(in srgb, var(--track-color, var(--accent-pink)) 30%, transparent);
+}
+
+/* ── Timeline slot ─────────────────────────────────────────── */
+.timeline-slot {
+  background: rgba(20, 3, 45, 0.8);
+  border: 1px solid rgba(160, 60, 160, 0.35);
+  transition: all 0.2s;
+}
+.timeline-slot.filled {
+  border-color: var(--track-color, var(--accent-pink));
+  box-shadow: 0 0 8px color-mix(in srgb, var(--track-color, var(--accent-pink)) 25%, transparent);
+}
+
+/* ── Vinyl ─────────────────────────────────────────────────── */
+.animate-spin-slow { animation: spin 3s linear infinite; }
+
+/* ── Progress bar ──────────────────────────────────────────── */
+.pixel-progress { background: rgba(60,10,80,0.6); height: 8px; position: relative; overflow: hidden; }
+.pixel-progress-fill { height: 100%; transition: width 0.3s ease; }
+
+/* ── Score colours ─────────────────────────────────────────── */
+.score-perfect { color: var(--accent-green); }
+.score-good    { color: #aaff00; }
+.score-decent  { color: var(--accent-yellow); }
+.score-risky   { color: var(--accent-orange); }
+.score-clash   { color: #ff4466; }
+
+/* ── Utility ───────────────────────────────────────────────── */
+.font-pixel { font-family: 'Press Start 2P', monospace; }
+.font-mono  { font-family: 'Share Tech Mono', monospace; }
+
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0;   transform: scale(0.5); }
+  50%       { opacity: 1;   transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(12px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; } 50% { opacity: 0; }
+}
+
+@keyframes pulseNeon {
+  0%, 100% { opacity: 1; } 50% { opacity: 0.55; }
+}
+
+@keyframes headerGlow {
+  0%, 100% { text-shadow: 0 0 10px #ff6ed8, 0 0 30px #ff6ed888, 0 0 60px #ff6ed844; }
+  50%       { text-shadow: 0 0 20px #ff6ed8, 0 0 50px #ff6ed8aa, 0 0 80px #ff6ed866; }
+}
+
+@keyframes panelPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(180,50,180,0.3), 0 8px 32px rgba(0,0,0,0.4); }
+  50%       { box-shadow: 0 0 25px rgba(200,80,200,0.5), 0 8px 32px rgba(0,0,0,0.4); }
+}
+
+@keyframes catBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-3px); }
+}
+
+.animate-slide-up { animation: slideUp 0.25s ease-out; }
+.animate-blink    { animation: blink 1s step-end infinite; }
+.animate-float    { animation: float 3s ease-in-out infinite; }
+.animate-header-glow { animation: headerGlow 2.5s ease-in-out infinite; }
+.animate-panel-pulse { animation: panelPulse 3s ease-in-out infinite; }

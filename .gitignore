@@ -1,0 +1,22 @@
+# Python
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+backend/output/
+backend/.env
+
+# Node
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+
+# Audio
+audio/*.mp3
+audio/*.wav
+audio/*.flac
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
